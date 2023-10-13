@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     const sum = cart.reduce(
       (accumulator, item) => accumulator + item.price * item.count,
-      0
+      0,
     );
     setCheckout(sum.toFixed(2));
   }, [cart]);
