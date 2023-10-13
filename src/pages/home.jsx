@@ -5,6 +5,7 @@ const Home = ({ products, handleCart }) => {
       {products.map((product) => {
         return (
           <div key={product.id}>
+            <img src={product.image} alt="" />
             <p>{product.title}</p>
             <button onClick={() => addCart(product)}>Add Item</button>
             <button onClick={() => removeCart(product)}>remove Item</button>
