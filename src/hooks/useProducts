@@ -1,0 +1,32 @@
+import { useState, useEffect } from "react";
+
+const useProducts = () => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState(() => {
+    const productData = JSON.parse(localStorage.getItem("productData"));
+    if (productData) setLoading(false);
+    return productData || null;
+  });
+
+  useEffect(() => {
+    if (!products) {
+      fetch("https://fakestoreapi.com/products", { mode: "cors" })
+        .then((response) => {
+          if (response.status >= 400) throw new Error("Server Error");
+          return response.json();
+        })
+        .then((response) => {
+          setProducts(response);
+          console.log("zzz");
+          localStorage.setItem("productData", JSON.stringify(response));
+        })
+        .catch((error) => setError(error))
+        .finally(() => setLoading(false));
+    }
+  }, []);
+
+  return { products, error, loading };
+};
+
+export { useProducts };
