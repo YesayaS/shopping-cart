@@ -1,9 +1,7 @@
-import { render, screen } from "@testing-library/react";
 import { useState, useEffect } from "react";
-
 import { useProducts } from "./hooks/useProducts";
+import { Shop } from "./pages/shop";
 import { Home } from "./pages/home";
-import { NavigationBar } from "./components/navBar";
 import "./App.css";
 
 function App() {
@@ -38,7 +36,7 @@ function App() {
       setCart(updateCart);
     } else return;
   };
-  const handle = {
+  const handleCart = {
     addCart: addCart,
     removeCart: removeCart,
   };
@@ -48,9 +46,12 @@ function App() {
 
   return (
     <>
-      <NavigationBar></NavigationBar>
-      <p>checkout = {checkout}</p>
-      <Home products={products} handleCart={handle}></Home>
+      <Home />
+      {/* <Shop
+        checkout={checkout}
+        products={products}
+        handleCart={handleCart}
+      ></Shop> */}
     </>
   );
 }

@@ -1,7 +1,8 @@
-const Home = ({ products, handleCart }) => {
+const Shop = ({ checkout, products, handleCart }) => {
   const { addCart, removeCart } = handleCart;
   return (
     <>
+      <p>checkout : {checkout}</p>
       {products.map((product) => {
         return (
           <div key={product.id}>
@@ -16,4 +17,4 @@ const Home = ({ products, handleCart }) => {
   );
 };
 
-export { Home };
+export { Shop };
