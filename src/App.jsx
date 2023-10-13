@@ -1,34 +1,56 @@
 import { render, screen } from "@testing-library/react";
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState, useEffect } from "react";
+
+import { useProducts } from "./hooks/useProducts";
+import { Home } from "./pages/home";
+import { NavigationBar } from "./components/navBar";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { products, error, loading } = useProducts();
+  const [cart, setCart] = useState([]);
+  const [checkout, setCheckout] = useState(0);
+
+  useEffect(() => {
+    const sum = cart.reduce(
+      (accumulator, item) => accumulator + item.price * item.count,
+      0
+    );
+    setCheckout(sum.toFixed(2));
+  }, [cart]);
+
+  const addCart = (product) => {
+    const i = cart.findIndex((item) => item.id === product.id);
+    const updateCart = [...cart];
+    if (i >= 0) {
+      updateCart[i].count += 1;
+    } else {
+      updateCart.push({ id: product.id, price: product.price, count: 1 });
+    }
+    setCart(updateCart);
+  };
+  const removeCart = (product) => {
+    const i = cart.findIndex((item) => item.id === product.id);
+    const updateCart = [...cart];
+    if (i >= 0) {
+      if (updateCart[i].count > 1) updateCart[i].count -= 1;
+      else updateCart.splice(i, 1);
+      setCart(updateCart);
+    } else return;
+  };
+  const handle = {
+    addCart: addCart,
+    removeCart: removeCart,
+  };
+
+  if (error) return <div>Error</div>;
+  if (loading) return <p>Loading...</p>;
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <NavigationBar></NavigationBar>
+      <p>checkout = {checkout}</p>
+      <Home products={products} handleCart={handle}></Home>
     </>
   );
 }
