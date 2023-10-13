@@ -1,22 +1,29 @@
-import { Flex, Box, Tabs } from "@radix-ui/themes";
+import { Flex, Box } from "@chakra-ui/react";
+import { Tabs, TabList, Tab, TabIndicator } from "@chakra-ui/react";
 
 const Headers = () => {
   return (
     <Flex
-      justify="between"
+      justifyContent="space-between"
       align="center"
-      p="4"
-      px="6"
-      style={{ border: "black 1px solid" }}
+      py={4}
+      px={6}
+      border="1px"
     >
       <Box>logo</Box>
-      <Tabs.Root defaultValue="home">
-        <Tabs.List>
-          <Tabs.Trigger value="home">home</Tabs.Trigger>
-          <Tabs.Trigger value="shop">shop</Tabs.Trigger>
-          <Tabs.Trigger value="about-us">about us</Tabs.Trigger>
-        </Tabs.List>
-      </Tabs.Root>
+      <Tabs position="relative" variant="unstyled">
+        <TabList>
+          <Tab value="home">home</Tab>
+          <Tab value="shop">shop</Tab>
+          <Tab value="about-us">about us</Tab>
+        </TabList>
+        <TabIndicator
+          mt="-1.5px"
+          height="2px"
+          bg="blackAlpha.900"
+          borderRadius="1px"
+        />
+      </Tabs>
       <Box>cart</Box>
     </Flex>
   );
