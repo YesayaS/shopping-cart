@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+
 import { useProducts } from "./hooks/useProducts";
-import { Shop } from "./pages/shop";
-import { Home } from "./pages/home";
+import { Shop } from "./pages/shop/shop";
+import { Home } from "./pages/home/home";
 import "./App.css";
 
 function App() {

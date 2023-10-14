@@ -1,3 +1,31 @@
+:root{
+  --primary: #212529;
+  --secondary: #dee2e6;
+  --white: #f8f9fa;
+}
+
 * {
   margin: 0;
+  color: var(--primary);
+  font-size: 1rem;
+  font-family: "Rubik";
+}
+
+button{
+  border: none;
+  background-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+li{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  &:visited{
+      color: var(--primary);
+  }
 }
