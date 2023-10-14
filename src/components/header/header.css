@@ -3,6 +3,7 @@
     justify-content: space-between;
     padding: 2rem 2rem;
     border: 1px var(--primary) solid;
+    background-color: white;
 }
 
 .tabs{
