@@ -1,7 +1,9 @@
 :root{
   --primary: #212529;
-  --secondary: #dee2e6;
+  --secondary: #e9ecef;
   --white: #f8f9fa;
+  --t-secondary: #adb5bd;
+  --t-tertiary: #6c757d;
 }
 
 * {
@@ -9,6 +11,10 @@
   color: var(--primary);
   font-size: 1rem;
   font-family: "Rubik";
+}
+
+body{
+  /* width: 100vw; */
 }
 
 button{
