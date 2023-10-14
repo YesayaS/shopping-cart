@@ -43,6 +43,9 @@ const Shop = () => {
     removeCart: removeCart,
   };
 
+  if (error) return <div>Error!</div>;
+  if (loading) return <div>Loading!</div>;
+
   return (
     <div className="content">
       <Headers />
