@@ -1,0 +1,19 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 2rem;
+    border: 1px var(--primary) solid;
+}
+
+.tabs{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.tab{
+    padding-bottom: 2px;
+    &.active{
+        border-bottom: 1px var(--primary) solid;
+    }
+}
